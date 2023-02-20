@@ -2,6 +2,7 @@
   <v-app id="app">
     <app-header></app-header>
     <app-footer :class="{ 'mt-45': lgAndUp }"></app-footer>
+    <!-- <region-group></region-group> -->
   </v-app>
 </template>
 

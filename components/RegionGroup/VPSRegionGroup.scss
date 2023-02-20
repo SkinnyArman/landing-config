@@ -1,0 +1,43 @@
+.v-chip {
+  &.disable {
+    pointer-events: none;
+  }
+}
+.filter-gray-60 {
+  -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+  filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
+  opacity: 0.6;
+}
+.region-card {
+  // border: 1px solid $a-gray-BD;
+  box-shadow: inset 0px 0px 0px 1px gray;
+  border-radius: 4px;
+  cursor: pointer;
+  img {
+    height: 24px;
+  }
+  &.active {
+    // border: 2px solid $a-accent !important;
+    box-shadow: inset 0px 0px 0px 1.5px purple;
+  }
+  .card-text {
+    width: 100%;
+  }
+  position: relative;
+}
+.region-card {
+  width: 100%;
+}
+.add-price {
+  display: inline-block;
+  min-width: 67px;
+}
+.bookmark {
+  position: absolute;
+  top: -20px;
+  height: 22px;
+  left: 0;
+  width: 100%;  
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+}
