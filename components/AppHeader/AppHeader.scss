@@ -1,0 +1,10 @@
+header {
+  height: 79px;
+  border-radius: 0;
+  .content {
+    width: 100%;
+    max-width: 1264px;
+  }
+  position: relative;
+  z-index: 2;
+}

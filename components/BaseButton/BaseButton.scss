@@ -1,0 +1,49 @@
+.v-btn {
+  letter-spacing: initial;
+  height: 40px !important;
+  &.xss {
+    width: 28px;
+  }
+  &.short {
+    height: 28px !important;
+  }
+  &.xs {
+    width: 114px;
+    height: 28px !important;
+  }
+  &.sm {
+    width: 134px;
+    height: 28px !important;
+  }
+  &.md {
+    width: 150px;
+  }
+  &.lg {
+    width: 178px;
+  }
+  &.xl {
+    width: 300px;
+  }
+  &.xxl {
+    width: 32%;
+    height: 56px !important;
+  }
+  &.primary,
+  &.secondary,
+  &.accent {
+    height: unset;
+  }
+  &.full {
+    width: 100%;
+  }
+  &.normal {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+  }
+  &.small {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 14px;
+  }
+}
