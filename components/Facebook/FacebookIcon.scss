@@ -1,0 +1,10 @@
+.icon {
+  fill: blue;
+  transition: 200ms;
+  &:hover {
+    fill: red;
+  }
+}
+.icon-box {
+  width: 18px;
+}

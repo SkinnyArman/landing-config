@@ -1,8 +1,11 @@
 <template>
   <v-app id="app">
     <app-header></app-header>
-    <v-main app>
-      <v-row> </v-row>
-    </v-main>
+    <app-footer :class="{ 'mt-45': lgAndUp }"></app-footer>
   </v-app>
 </template>
+
+<script setup>
+import { useDisplay } from "vuetify";
+const { lgAndUp } = useDisplay();
+</script>
