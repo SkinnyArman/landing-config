@@ -24,7 +24,7 @@
             <div class="d-flex justify-space-between flex-grow-1 align-center">
               <p class="primary--text subtitle-2">{{ location.name }}</p>
               <span class="caption grey--text text--darken-1 add-price">
-                + ${{ parseFloat(location.monthlyPrice).toFixed(2) }} USD
+                + ${{ parseFloat(location.monthlyPrice.toString()).toFixed(2) }} USD
               </span>
               <!-- <p v-if="isLocationDisabled(location)" class="caption">
               Coming Soon...
@@ -43,53 +43,32 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "RegionGroup",
-  props: {
-    defaultLocation: {
-      type: Object,
-      required: false,
-      default: () => { },
-    },
+<script setup lang="ts">
+import { Region } from '@/types/region'
+import { Location } from '@/models/location'
 
-    locationList: {
-      type: Array,
-      required: false,
-      default: () => [],
-    },
-  },
-  data() {
-    return {
-      selectedLocation: "",
-    };
-  },
-  watch: {
-    defaultLocation(newDefaultLocation) {
-      this.selectedLocation = newDefaultLocation.id;
-    },
-  },
-  created() {
-    this.selectedLocation = this.defaultLocation.id;
-  },
-  methods: {
-    setLocation(location) {
-      this.selectedLocation = location.id;
-      this.$emit("setLocation", {
-        id: this.selectedLocation,
-        abbr: location.abbr.toUpperCase(),
-        configId: location.configId,
-        ...location,
-      });
-    },
-    isLocationActive(location) {
-      return this.selectedLocation === location.id;
-    },
-    isLocationDisabled(location) {
-      return location.disabled;
-    },
-  },
-};
+interface PropsType {
+  locationList: Region[],
+  defaultLocation: Location
+}
+const selectedLocation = ref()
+
+const props = defineProps<PropsType>();
+selectedLocation.value = props.defaultLocation.id
+
+const emits = defineEmits(['setLocation']);
+
+const setLocation = (location: Location) => {
+  selectedLocation.value = location.id;
+  emits("setLocation", new Location(selectedLocation.value, location.configId, location.abbr.toUpperCase(), false));
+}
+const isLocationActive = (location: Location) => {
+  return selectedLocation.value === location.id;
+}
+const isLocationDisabled = (location: Location) => {
+  return location.disabled;
+}
+
 </script>
 
 <style scoped lang="scss">
