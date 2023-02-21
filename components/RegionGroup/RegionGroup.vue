@@ -5,42 +5,19 @@
       <span class="subtitle-2 grey--text">(server location)</span>
     </h3>
     <v-row class="mb-4" dense>
-      <v-col
-        v-for="location in locationList"
-        :key="location.id"
-        xs="12"
-        cols="12"
-        sm="6"
-        md="6"
-        lg="4"
-        class="navy--text font-weight-medium"
-      >
-        <tag-manager-wrapper
-          :id="location.name"
-          @click="$emit('setLocation', location)"
-        >
-          <div
-            class="region-card px-2 py-2 d-flex align-center text--blue-dark font-weight-medium"
-            :id="location.name"
+      <v-col v-for="location in locationList" :key="location.id" xs="12" cols="12" sm="6" md="6" lg="4"
+        class="navy--text font-weight-medium">
+        <tag-manager-wrapper :id="location.name" @click="$emit('setLocation', location)">
+          <div class="region-card px-2 py-2 d-flex align-center text--blue-dark font-weight-medium" :id="location.name"
             :class="{
               active: isLocationActive(location),
               disable: isLocationDisabled(location),
-            }"
-            @click="setLocation(location)"
-          >
-            <img
-              class="mr-2"
-              :src="location.image"
-              :alt="location.name"
-              :class="{
-                'filter-gray-60': location.disabled,
-                'mr-2': $vuetify.breakpoint.xs,
-              }"
-            />
-            <div
-              v-if="location.abbr === 'dtx'"
-              class="bookmark d-flex caption font-italic justify-center primary lighten-1 white--text"
-            >
+            }" @click="setLocation(location)">
+            <img class="mr-2" :src="location.image" :alt="location.name" :class="{
+              'filter-gray-60': location.disabled,
+            }" />
+            <div v-if="location.abbr === 'dtx'"
+              class="bookmark d-flex caption font-italic justify-center primary lighten-1 white--text">
               10Gbps - NVMe SSD - 2.9+ GHz CPU
             </div>
 
@@ -73,7 +50,7 @@ export default {
     defaultLocation: {
       type: Object,
       required: false,
-      default: () => {},
+      default: () => { },
     },
 
     locationList: {
