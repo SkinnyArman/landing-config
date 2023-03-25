@@ -7,6 +7,7 @@ export class Region {
   image: string;
   hourlyPrice: string;
   monthlyPrice: number;
+  isZyrrus: boolean;
   constructor(
     id: string,
     configId: null | string,
@@ -15,7 +16,8 @@ export class Region {
     name: string,
     image: string,
     hourlyPrice: string,
-    monthlyPrice: number
+    monthlyPrice: number,
+    isZyrrus: boolean
   ) {
     this.id = id;
     this.configId = configId;
@@ -25,5 +27,6 @@ export class Region {
     this.image = image;
     this.hourlyPrice = hourlyPrice;
     this.monthlyPrice = monthlyPrice;
+    this.isZyrrus = isZyrrus;
   }
 }

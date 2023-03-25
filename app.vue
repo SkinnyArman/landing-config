@@ -6,6 +6,7 @@
       :locationList="regionList"
       :default-location="instance.region"
     ></region-group>
+    <div v-for="os in osList" :key="os.id">{{ os.name }}</div>
   </v-app>
 </template>
 
@@ -13,14 +14,29 @@
 import { useDisplay } from "vuetify";
 import { Region } from "./models/Region";
 import { Instance } from "./types/instance";
+import API_URLS from "./api/urls";
 
 const { lgAndUp } = useDisplay();
+const { query } = useRoute();
 
-const regionList = ref<Region[]>([]);
-const { data } = await useFetch<Region[]>(
-  "https://dev3.cloudzy.com/api/regions?productId=172&slug=home"
-);
-const instance = reactive<Instance>({ region: data.value[0] });
-regionList.value = data.value;
+const { data } = await useFetch<Region[]>(API_URLS.REGION, {
+  params: query,
+});
 
+const regionList = ref<Region[]>(data.value);
+const instance = reactive<Instance>({ region: regionList.value[0] });
+const osList = ref<any>([]);
+
+if (instance.region.isZyrrus) {
+  console.log("is zyrrus");
+  const { data } = await useFetch(API_URLS.OS, {
+    params: {
+      productId: query.productId,
+      regionId: instance.region.id,
+      osFamily: "linux"
+    },
+  });
+  osList.value = data.value;
+  console.log(osList.value)
+}
 </script>

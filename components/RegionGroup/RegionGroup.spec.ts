@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { fireEvent, render, screen } from "@testing-library/vue";
+import { render, screen } from "@testing-library/vue";
 import RegionGroup from "./RegionGroup.vue";
 import { Region } from "models/Region";
 import { isLocationDisabled, isLocationActive } from "./utils";
@@ -8,7 +8,7 @@ describe("Region Group Logic", () => {
   it("returns true when location is disabled", () => {
     expect(
       isLocationDisabled(
-        new Region("ssda", "asd", "sd", true, "sdsd", "ff", "sds", 2)
+        new Region("ssda", "asd", "sd", true, "sdsd", "ff", "sds", 2, false)
       )
     ).toEqual(true);
   });
@@ -22,12 +22,13 @@ describe("Region Group Logic", () => {
       "sd",
       "sds",
       "2.2",
-      2
+      2,
+      false
     );
     expect(
       isLocationActive(
         randomRegion,
-        new Region("iran", "Sdd", "scc", false, "fvf", "dfm", "3.2", 1)
+        new Region("iran", "Sdd", "scc", false, "fvf", "dfm", "3.2", 1, false)
       )
     ).toEqual(true);
   });
@@ -53,6 +54,7 @@ describe("RegionGroup", () => {
             configId: null,
             hourlyPrice: "0.0",
             monthlyPrice: 0,
+            isZyrrus: true,
           },
         ],
       },
@@ -69,7 +71,8 @@ describe("RegionGroup", () => {
         "US, Dallas, Texas",
         "someurl",
         "0.0",
-        0
+        0,
+        true
       ),
     ]);
   });
