@@ -4,24 +4,23 @@
     <app-footer :class="{ 'mt-45': lgAndUp }"></app-footer>
     <region-group
       :locationList="regionList"
-      :default-location="instance.selectedLocation"
+      :default-location="instance.region"
     ></region-group>
   </v-app>
 </template>
 
 <script setup lang="ts">
 import { useDisplay } from "vuetify";
-import { Region } from "./types/region";
+import { Region } from "./models/Region";
 import { Instance } from "./types/instance";
 
 const { lgAndUp } = useDisplay();
 
 const regionList = ref<Region[]>([]);
-const instance = ref(<Instance>{
-  selectedLocation: { id: "DTX", configId: null, abbr: "dtx" },
-});
 const { data } = await useFetch<Region[]>(
   "https://dev3.cloudzy.com/api/regions?productId=172&slug=home"
 );
-regionList.value = data.value as Region[];
+const instance = reactive<Instance>({ region: data.value[0] });
+regionList.value = data.value;
+
 </script>

@@ -15,12 +15,12 @@
         lg="4"
         class="navy--text font-weight-medium"
       >
-        <div :id="location.name" @click="$emit('setLocation', location)">
+        <div :id="location.name">
           <div
             class="region-card px-2 py-2 d-flex align-center text--blue-dark font-weight-medium"
             :id="location.name"
             :class="{
-              active: isLocationActive(location),
+              active: isLocationActive(selectedLocation, location),
               disable: isLocationDisabled(location),
             }"
             @click="setLocation(location)"
@@ -55,7 +55,7 @@
       </v-col>
     </v-row>
     <div class="caption silver--text">
-      <v-icon color="accent" class="mr-2">mdi-information-outline </v-icon>
+      <!-- <v-icon color="accent" class="mr-2">mdi-information-outline </v-icon> -->
       <span>
         Certain locations may come with lower CPU speed and 1Gbps connection.
       </span>
@@ -64,38 +64,25 @@
 </template>
 
 <script setup lang="ts">
-import { Region } from "../../types/region";
-import { Location } from "../../models/location";
+import { Region } from "../../models/Region";
 import { ref } from "vue";
+import { isLocationDisabled, isLocationActive } from "./utils";
 
 interface PropsType {
   locationList: Region[];
-  defaultLocation: Location;
+  defaultLocation: Region;
 }
-const selectedLocationId = ref("");
-
 const props = defineProps<PropsType>();
-selectedLocationId.value = props.defaultLocation.id;
+const selectedLocation = ref<Region>(props.defaultLocation);
 
-const emits = defineEmits(["setLocation"]);
+const emits = defineEmits(["region"]);
 
-const setLocation = (location: Location) => {
-  selectedLocationId.value = location.id;
-  emits(
-    "setLocation",
-    new Location(
-      selectedLocationId.value,
-      location.configId,
-      location.abbr.toUpperCase(),
-      false
-    )
-  );
-};
-const isLocationActive = (location: Location) => {
-  return selectedLocationId.value === location.id;
-};
-const isLocationDisabled = (location: Location) => {
-  return location.disabled;
+const setLocation = (location: Region) => {
+  if (location.disabled) {
+    return;
+  }
+  selectedLocation.value = location;
+  emits("region", location);
 };
 </script>
 

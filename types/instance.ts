@@ -1,5 +1,5 @@
-import { Location } from "../models/location";
+import { Region } from "../models/Region";
 
 export type Instance = {
-  selectedLocation: Location;
+  region: Region;
 };
