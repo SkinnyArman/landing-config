@@ -5,14 +5,22 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "test": "vitest"
   },
   "devDependencies": {
-    "nuxt": "^3.2.2"
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/vue": "^7.0.0",
+    "nuxt": "^3.2.2",
+    "nuxt-vite": "^0.3.5",
+    "vitest": "^0.29.7"
   },
   "dependencies": {
+    "@vitejs/plugin-vue": "^4.1.0",
+    "jsdom": "^21.1.1",
     "sass": "^1.58.3",
     "vite-plugin-vuetify": "^1.0.2",
+    "vite-tsconfig-paths": "^4.0.7",
     "vuetify": "^3.1.4"
   }
 }

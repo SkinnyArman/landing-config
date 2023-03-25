@@ -64,8 +64,9 @@
 </template>
 
 <script setup lang="ts">
-import { Region } from "@/types/region";
-import { Location } from "@/models/location";
+import { Region } from "../../types/region";
+import { Location } from "../../models/location";
+import { ref } from "vue";
 
 interface PropsType {
   locationList: Region[];
