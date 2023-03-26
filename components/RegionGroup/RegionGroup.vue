@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h3 class="mb-10 primary--text">
+    <h3 class="mb-10 text-primary">
       Region
-      <span class="subtitle-2 grey--text">(server location)</span>
+      <span class="text-subtitle-2 text-grey">(server location)</span>
     </h3>
     <v-row class="mb-4" dense>
       <v-col
@@ -13,11 +13,11 @@
         sm="6"
         md="6"
         lg="4"
-        class="navy--text font-weight-medium"
+        class="text-navy font-weight-medium"
       >
         <div :id="location.name">
           <div
-            class="region-card px-2 py-2 d-flex align-center text--blue-dark font-weight-medium"
+            class="region-card text-body-2 px-2 py-2 d-flex align-center text-blue-dark font-weight-medium"
             :id="location.name"
             :class="{
               active: isLocationActive(selectedLocation, location),
@@ -35,14 +35,14 @@
             />
             <div
               v-if="location.abbr === 'dtx'"
-              class="bookmark d-flex caption font-italic justify-center primary lighten-1 white--text"
+              class="bookmark d-flex text-caption font-italic justify-center bg-accent white--text"
             >
               10Gbps - NVMe SSD - 2.9+ GHz CPU
             </div>
 
             <div class="d-flex justify-space-between flex-grow-1 align-center">
-              <p class="primary--text subtitle-2">{{ location.name }}</p>
-              <span class="caption grey--text text--darken-1 add-price">
+              <p class="text-primary text-subtitle-2">{{ location.name }}</p>
+              <span class="text-caption text-grey text--darken-1 add-price">
                 + ${{ parseFloat(location.monthlyPrice.toString()).toFixed(2) }}
                 USD
               </span>
@@ -54,8 +54,8 @@
         </div>
       </v-col>
     </v-row>
-    <div class="caption silver--text">
-      <!-- <v-icon color="accent" class="mr-2">mdi-information-outline </v-icon> -->
+    <div class="caption text-silver">
+      <v-icon color="accent" class="mr-2">mdi-information-outline </v-icon>
       <span>
         Certain locations may come with lower CPU speed and 1Gbps connection.
       </span>

@@ -2,13 +2,35 @@
   <v-app id="app">
     <app-header></app-header>
     <app-footer :class="{ 'mt-45': lgAndUp }"></app-footer>
-    <region-group
-      :locationList="regionList"
-      :default-location="instance.region"
-    ></region-group>
-    <div v-for="os in osList" :key="os.id">{{ os.name }}</div>
+    <div class="content">
+      <h3 class="mr-auto ml-auto">Configure your Cloud VPS</h3>
+      <region-group
+        :locationList="regionList"
+        :default-location="instance.region"
+      ></region-group>
+      <div v-for="os in osList" :key="os.id">{{ os.name }}</div>
+    </div>
   </v-app>
 </template>
+
+<style lang="scss">
+.content {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1264px;
+  p {
+    margin-bottom: unset !important;
+  }
+  @media screen and (max-width: 1264px) {
+    padding: 0 80px;
+    padding-bottom: 110px;
+  }
+  @media screen and (max-width: 960px) {
+    padding: 0 32px;
+    padding-bottom: 110px;
+  }
+}
+</style>
 
 <script setup lang="ts">
 import { useDisplay } from "vuetify";
@@ -19,8 +41,11 @@ import API_URLS from "./api/urls";
 const { lgAndUp } = useDisplay();
 const { query } = useRoute();
 
-const { data } = await useFetch<Region[]>(API_URLS.REGION, {
+const { data, error } = await useFetch<Region[]>(API_URLS.REGION, {
   params: query,
+  onRequestError({ request, options, error }) {
+    console.log(error);
+  },
 });
 
 const regionList = ref<Region[]>(data.value);
@@ -28,15 +53,13 @@ const instance = reactive<Instance>({ region: regionList.value[0] });
 const osList = ref<any>([]);
 
 if (instance.region.isZyrrus) {
-  console.log("is zyrrus");
   const { data } = await useFetch(API_URLS.OS, {
     params: {
       productId: query.productId,
       regionId: instance.region.id,
-      osFamily: "linux"
+      osFamily: "linux",
     },
   });
   osList.value = data.value;
-  console.log(osList.value)
 }
 </script>

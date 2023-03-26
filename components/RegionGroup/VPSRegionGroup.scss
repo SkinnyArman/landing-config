@@ -1,19 +1,21 @@
+// @import "./assets/styles/_variables.scss";
+$a-accent: #2d31a6;
+$a-gray-BD: #bdbdbd;
+
 .filter-gray-60 {
   -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
   filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
   opacity: 0.6;
 }
 .region-card {
-  // border: 1px solid $a-gray-BD;
-  box-shadow: inset 0px 0px 0px 1px gray;
+  box-shadow: inset 0px 0px 0px 1px $a-gray-BD;
   border-radius: 4px;
   cursor: pointer;
   img {
     height: 24px;
   }
   &.active {
-    // border: 2px solid $a-accent !important;
-    box-shadow: inset 0px 0px 0px 1.5px purple;
+    box-shadow: inset 0px 0px 0px 1.5px $a-accent;
   }
   .card-text {
     width: 100%;
