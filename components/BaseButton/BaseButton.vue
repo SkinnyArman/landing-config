@@ -1,8 +1,7 @@
 <template>
   <v-btn
     :class="[size, { short: short }, fontSize]"
-    outlined
-    depressed
+    elevation="0"
     :loading="loading"
     :width="width"
     :disabled="disabled"

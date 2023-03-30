@@ -20,6 +20,7 @@ const myCustomLightTheme = {
     darkblue: "#001E58",
     navy: "#2F3857",
     silver: "#5A5E6F",
+    lightgrey: "#F5F5F5",
   },
 };
 

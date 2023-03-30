@@ -1,14 +1,30 @@
 <template>
   <v-app id="app">
     <app-header></app-header>
-    <app-footer :class="{ 'mt-45': lgAndUp }"></app-footer>
+    <!-- <app-footer :class="{ 'mt-45': lgAndUp }"></app-footer> -->
     <div class="content">
       <h3 class="mr-auto ml-auto">Configure your Cloud VPS</h3>
-      <region-group
-        :locationList="regionList"
-        :default-location="instance.region"
-      ></region-group>
-      <div v-for="os in osList" :key="os.id">{{ os.name }}</div>
+      <v-row>
+        <v-col lg="9">
+          <region-group
+            :locationList="regionList"
+            :default-location="instance.region"
+          ></region-group>
+          <v-select
+            placeholder="Select Os"
+            :items="osList"
+            :item-value="'id'"
+            :item-title="'name'"
+          ></v-select>
+        </v-col>
+        <v-col lg="3">
+          <VPS-summary
+            :instance="instance"
+            :is-sending="false"
+            :is-deploy-enabled="true"
+          ></VPS-summary>
+        </v-col>
+      </v-row>
     </div>
   </v-app>
 </template>
@@ -57,7 +73,7 @@ if (instance.region.isZyrrus) {
     params: {
       productId: query.productId,
       regionId: instance.region.id,
-      osFamily: "linux",
+      osFamily: query.osFamily,
     },
   });
   osList.value = data.value;

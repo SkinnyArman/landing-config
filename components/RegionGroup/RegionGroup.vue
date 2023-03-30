@@ -34,7 +34,7 @@
               }"
             />
             <div
-              v-if="location.abbr === 'dtx'"
+              v-if="location.isPremium"
               class="bookmark d-flex text-caption font-italic justify-center bg-accent white--text"
             >
               10Gbps - NVMe SSD - 2.9+ GHz CPU
