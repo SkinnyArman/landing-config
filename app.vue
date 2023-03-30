@@ -9,6 +9,7 @@
           <region-group
             :locationList="regionList"
             :default-location="instance.region"
+            @region="instance.region = $event"
           ></region-group>
           <v-select
             placeholder="Select Os"
