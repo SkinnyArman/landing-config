@@ -6,7 +6,7 @@
       <div class="info-row d-flex justify-space-between px-2">
         <p class="text-grey text--darken-1">Region:</p>
         <p class="text-capitalize text-navy">
-          {{ "s" }}
+          {{ planRegion }}
         </p>
       </div>
       <div class="info-row d-flex justify-space-between bg-lightgrey px-2">
@@ -43,25 +43,17 @@ export default {
   },
   computed: {
     planCPU() {
-      return this.instance.region.selectedPlan
-        ? this.instance.region.selectedPlan.specification.cpu + " vCPU"
-        : "-";
+      return this.instance.region.selectedPlan.specification.cpu + " vCPU";
     },
     planMemory() {
-      return this.instance.region.selectedPlan
-        ? this.instance.region.selectedPlan.specification.ram + " GB"
-        : "-";
+      return this.instance.region.selectedPlan.specification.ram + " GB";
     },
     planStorage() {
-      return this.instance.region.selectedPlan
-        ? this.instance.region.selectedPlan.specification.storage + " GB"
-        : "-";
+      return this.instance.region.selectedPlan.specification.storage + " GB";
     },
-    // planRegion() {
-    //   return this.instance.region.selectedLocation
-    //     ? this.instance.selectedLocation.name
-    //     : "-";
-    // },
+    planRegion() {
+      return this.instance.region.name;
+    },
     // osName() {
     //   return this.instance.os.name ? this.instance.os.name.split("(")[0] : "-";
     // },
