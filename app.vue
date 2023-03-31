@@ -13,7 +13,6 @@
           ></region-group>
           <v-select
             placeholder="Select Os"
-            :value
             :items="
               osList.filter(
                 (os) => os.family !== 'almalinux' && os.family !== 'kali'
