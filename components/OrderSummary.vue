@@ -19,7 +19,7 @@
       </div>
     </div>
     <div>
-      <div class="info-row d-flex justify-space-between px-2">
+      <div class="info-row d-flex justify-space-between bg-lightgrey px-2">
         <p class="text-grey text--darken-1">Storage:</p>
         <p class="text-navy">{{ planStorage }}</p>
       </div>
