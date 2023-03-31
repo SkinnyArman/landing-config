@@ -13,10 +13,22 @@
           ></region-group>
           <v-select
             placeholder="Select Os"
-            :items="osList"
-            :item-value="'id'"
-            :item-title="'name'"
-          ></v-select>
+            :value
+            :items="
+              osList.filter(
+                (os) => os.family !== 'almalinux' && os.family !== 'kali'
+              )
+            "
+          >
+            <template v-slot:item="{ item }">
+              <div @click="selectOs(item.value)">
+                <img class="mr-2" :src="itemImage(item.value.family)" />
+                <span class="text-subtitle-2 text-silver">{{
+                  item.value.name
+                }}</span>
+              </div>
+            </template>
+          </v-select>
         </v-col>
         <v-col lg="3">
           <VPS-summary
@@ -54,6 +66,7 @@ import { useDisplay } from "vuetify";
 import { Region } from "./models/Region";
 import { Instance } from "./types/instance";
 import API_URLS from "./api/urls";
+import { url } from "inspector";
 
 const { lgAndUp } = useDisplay();
 const { query } = useRoute();
@@ -66,7 +79,7 @@ const { data, error } = await useFetch<Region[]>(API_URLS.REGION, {
 });
 
 const regionList = ref<Region[]>(data.value);
-const instance = reactive<Instance>({ region: regionList.value[0] });
+const instance = reactive<Instance>({ region: regionList.value[0], os: {} });
 const osList = ref<any>([]);
 
 if (instance.region.isZyrrus) {
@@ -79,4 +92,12 @@ if (instance.region.isZyrrus) {
   });
   osList.value = data.value;
 }
+
+const selectOs = (os) => {
+  instance.os = os;
+};
+
+const itemImage = (family: string) => {
+  return new URL(`./assets/images/${family}.svg`, import.meta.url).href;
+};
 </script>
