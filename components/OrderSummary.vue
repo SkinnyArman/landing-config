@@ -27,7 +27,7 @@
         class="info-row os-row d-flex justify-space-between align-start px-2"
       >
         <p class="os text-grey text--darken-1">OS:</p>
-        <p class="text-capitalize text-navy text-justify">{{ "s" }}</p>
+        <p class="text-capitalize text-navy text-justify">{{ instance.os.name }}</p>
       </div>
     </div>
   </div>
