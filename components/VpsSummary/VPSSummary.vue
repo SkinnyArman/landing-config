@@ -7,26 +7,26 @@
     <v-divider class="mb-3"></v-divider>
     <div class="mb-2">
       <div class="d-flex justify-space-between align-center">
-        <span class="body-2">Base Price</span>
-        <span class="subtitle-1 font-weight-bold navy--text"
+        <span class="text-body-2">Base Price</span>
+        <span class="text-subtitle-1 font-weight-bold navy--text"
           >$ {{ moneyFormat(props.basePrice) }}</span
         >
       </div>
       <div class="d-flex justify-space-between align-center">
-        <span class="body-2">Region-based Price</span>
-        <span class="subtitle-1 font-weight-bold navy--text"
+        <span class="text-body-2">Region-based Price</span>
+        <span class="text-subtitle-1 font-weight-bold navy--text"
           >$ {{ moneyFormat(props.regionPrice) }}</span
         >
       </div>
     </div>
     <v-divider class="mb-3"></v-divider>
     <div
-      class="total navy--text d-flex align-center justify-space-between mb-2 px-2"
+      class="total text-navy d-flex align-center justify-space-between mb-2 px-2"
     >
-      <p class="subtitle-2 font-weight-bold">Estimated Total</p>
-      <p class="subtitle-1 font-weight-bold">
+      <p class="text-subtitle-2 font-weight-bold">Estimated Total</p>
+      <p class="text-subtitle-1 font-weight-bold">
         {{ "$" + moneyFormat(props.price) }}
-        <span class="caption grey--text text--darken-1 font-weight-bold"
+        <span class="text-caption text-grey text--darken-1 font-weight-bold"
           >/m</span
         >
       </p>
